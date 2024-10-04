@@ -1,0 +1,50 @@
+SELECT * FROM VETERINARIO v 
+WHERE v.ESPECIALIDADE  = 'Dermatologista'
+
+/* 2- Buscar Pacientes por Faixa Etária*/
+SELECT * FROM PACIENTE p 
+WHERE IDADE BETWEEN 2 AND 5
+
+/* 3- Listar Agendamentos em um Período Específico*/
+SELECT * FROM AGENDAMENTO a 
+WHERE a.DATA_HORA BETWEEN '2024-01-01' AND '2024-03-31'
+
+/* 4- Buscar Medicamentos com Preço Superior a Um Valor*/
+SELECT * FROM MEDICAMENTOS m 
+WHERE 	m.PRECO >25
+
+/* 5- Filtrar Receitas por Data e Veterinário*/
+SELECT * FROM RECEITA r
+WHERE r.DATA_EMISSAO >'2024-06-01'
+AND r.ID_AGENDAMENTO = (SELECT a.id_agendamento FROM AGENDAMENTO a WHERE a.id_veterinario = (SELECT v.id_veterinario FROM VETERINARIO v WHERE v.nome = 'Dr. Ana Souza'))
+//* 1- Listar Veterinários com Especialidade Específica*/
+
+/* 6- Listar Pacientes de Um Tutor Específico*/
+SELECT * FROM PACIENTE p 
+WHERE p.ID_TUTOR = (SELECT ID_TUTOR FROM TUTOR t WHERE t.NOME = 'Maria Silva')
+
+/* 7- Buscar Itens de Receita para Medicamento Específico*/
+SELECT * FROM ITENSRECEITA i 
+WHERE i.ID_MEDICAMENTO = (SELECT ID_MEDICAMENTO FROM MEDICAMENTOS m WHERE m.NOME = 'Anti-inflamatório Y')
+
+/* 9 -Listar Agendamentos por Veterinário e Motivo*/
+SELECT * FROM AGENDAMENTO a 
+WHERE a.MOTIVO = 'Exame de sangue' AND a.ID_VETERINARIO = (SELECT v.ID_VETERINARIO FROM VETERINARIO v WHERE v.NOME = 'Dr. Pedro Lima')
+
+/* 10- Listar Medicamentos com Descrição Não Nula e Preço Inferior a 50 Reais*/
+SELECT * FROM MEDICAMENTOS m 
+WHERE m.DESCRICAO IS NOT NULL AND m.PRECO <50
+
+/* 11- Listar Pacientes com Peso Entre Dois Valores*/
+SELECT * FROM PACIENTE p 
+WHERE p.PESO BETWEEN 3 AND 10
+
+/* 12- Buscar Pacientes de um Tutor e com Peso Superior a um Valor*/
+SELECT * FROM PACIENTE p 
+WHERE p.ID_TUTOR = (SELECT ID_TUTOR FROM TUTOR t WHERE t.NOME = 'Carlos Lima') AND PESO >5
+
+/* 13- Listar Pacientes de Especie 'Cão' com Peso Inferior a 7 kg*/
+SELECT * FROM PACIENTE p 
+
+
+
